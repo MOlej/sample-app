@@ -1,0 +1,31 @@
+test_micropost:
+  content: <%= Faker::Hipster.sentence(7) %>
+  created_at: <%= 1.hour.ago %>
+  user: test_user
+
+orange:
+  content: "I just ate and orange!"
+  created_at: <%= 10.minutes.ago %>
+  user: test_user2
+
+manifesto:
+  content: "Check this website: http://example.com"
+  created_at: <%= 3.years.ago %>
+  user: admin
+
+funny_cat:
+  content: "lol https://i.kym-cdn.com/entries/icons/original/000/026/638/cat.jpg"
+  created_at: <%= 2.hours.ago %>
+  user: test_user
+
+most_recent:
+  content: "Most recent post"
+  created_at: <%= Time.zone.now %>
+  user: test_user
+
+<% 30.times do |n| %>
+micropost_<%= n %>:
+  content: <%= Faker::Lorem.sentence %>
+  created_at: <%= 42.days.ago %>
+  user: test_user
+<% end %>
