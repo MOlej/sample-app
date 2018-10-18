@@ -24,3 +24,9 @@
 
 # Ignore Spring files.
 /spring/*.pid
+
+# Ignore vim swp files.
+*.swp
+
+# Ignore uploaded test images.
+/public/uploads
