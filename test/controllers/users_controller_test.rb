@@ -30,7 +30,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not @other_user.admin?
     patch user_path(@other_user), params: {
       user: { password: "Passw0rd",
-              password: "Passw0rd",
               admin: true } }
     assert_not @other_user.reload.admin?
   end
@@ -49,5 +48,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       delete user_path(@admin)
     end
     assert_redirected_to root_url
+  end
+
+  test 'should redirect following when not logged in' do
+    get following_user_path(@user)
+    assert_redirected_to login_url
+  end
+
+  test 'should redirect followers when not logged in' do
+    get followers_user_path(@user)
+    assert_redirected_to login_url
   end
 end
