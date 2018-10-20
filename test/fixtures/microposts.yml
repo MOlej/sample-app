@@ -19,7 +19,7 @@ funny_cat:
   user: test_user
 
 most_recent:
-  content: "Most recent post"
+  content: "Most recent post with characters like ''"
   created_at: <%= Time.zone.now %>
   user: test_user
 

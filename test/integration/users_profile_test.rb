@@ -5,6 +5,7 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:test_user)
+    @user2 = users(:test_user2)
   end
 
   test "profile display" do
@@ -16,8 +17,11 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
     assert_match @user.microposts.count.to_s, response.body
     assert_select 'div.pagination'
     @user.microposts.paginate(page: 1).each do |micropost|
-      assert_match micropost.content, response.body
+      assert_match CGI.escapeHTML(micropost.content), response.body
     end
     assert_select 'div.pagination', count: 1
+    assert_select 'div.stats'
+    assert_select 'div.stats>a', "#{@user.following.count}\n    \n    following"
+    assert_select 'div.stats>a', "#{@user.followers.count}\n    \n    followers"
   end
 end
