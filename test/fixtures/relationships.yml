@@ -13,3 +13,7 @@ three:
 four:
   follower: test_user2
   followed: test_user
+
+five:
+  follower: admin
+  followed: test_user
